@@ -1,0 +1,37 @@
+{
+  "name": "webaudio-toneplayer",
+  "version": "1.0.0",
+  "description": "A web audio interface for playing basic tones and chords.",
+  "main": "dist/TonePlayer.js",
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ihansson/webaudio-toneplayer.git"
+  },
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "keywords": [
+    "javascript",
+    "webaudio",
+    "audio"
+  ],
+  "author": "Ian Hansson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ihansson/webaudio-toneplayer/issues"
+  },
+  "homepage": "https://github.com/ihansson/webaudio-toneplayer#readme",
+  "dependencies": {
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42",
+    "babel-loader": "^8.0.0-beta.2",
+    "webpack": "^4.1.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^2.0.12"
+  }
+}

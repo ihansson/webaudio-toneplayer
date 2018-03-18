@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sample Chords</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="../dist/TonePlayer.js"></script>
+    <script type="text/javascript">
+    	const context = createTonePlayerContext();
+
+        const keyboard = TonePlayer.create({
+            defaultType: 'square',
+            defaultVolume: 0.1,
+            defaultDuration: 0.1,
+            context: context
+        });
+
+        keyboard.playChord(['a','c','e'],{
+        	duration: 1
+        });
+
+        keyboard.playChord(['e','g','a'],{
+        	duration: 1,
+        	delay: 1
+        });
+    </script>
+</body>
+
+</html>

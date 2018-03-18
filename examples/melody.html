@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sample Melody</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="../dist/TonePlayer.js"></script>
+    <script type="text/javascript">
+    	const context = createTonePlayerContext();
+
+        const keyboard = TonePlayer.create({
+            defaultType: 'square',
+            defaultVolume: 0.1,
+            defaultDuration: 0.1,
+            context: context
+        });
+
+        keyboard.playNotes(['a','b','c','a3','b3','c3','d','e','c','e','a'],{
+        	distance: 0.2
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sample Piece 1</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="../dist/TonePlayer.js"></script>
+    <script type="text/javascript">
+    	const context = createTonePlayerContext();
+
+        const keyboard = TonePlayer.create({
+            defaultType: 'square',
+            defaultVolume: 0.1,
+            defaultDuration: 0.25,
+            context: context
+        });
+
+        const ambiance = TonePlayer.create({
+            defaultType: 'square',
+            defaultVolume: 0.025,
+            defaultDuration: 1,
+            context: context
+        });
+
+        ambiance.playChord(['a','c','e']);
+        keyboard.playNotes(['a','a','e'],{
+        	distance: 0.25
+        });
+
+        ambiance.playChord(['c','e','f'],{
+        	delay: 1
+        });
+        keyboard.playNotes(['c','c','f'],{
+        	distance: 0.25,
+        	delay: 1
+        });
+
+
+    </script>
+</body>
+
+</html>
