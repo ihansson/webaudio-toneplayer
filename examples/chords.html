@@ -11,18 +11,18 @@
     	const context = createTonePlayerContext();
 
         const keyboard = TonePlayer.create({
-            defaultType: 'square',
+            defaultType: 'sawtooth',
             defaultVolume: 0.1,
-            defaultDuration: 0.1,
+            defaultDuration: 1,
+            defaultDecay: 0.1,
+            defaultAttack: 0.5,
             context: context
         });
 
         keyboard.playChord(['a','c','e'],{
-        	duration: 1
         });
 
         keyboard.playChord(['e','g','a'],{
-        	duration: 1,
         	delay: 1
         });
     </script>

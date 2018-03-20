@@ -8,6 +8,8 @@ const keyboard = TonePlayer.create({
     defaultType: 'square',
     defaultVolume: 0.1,
     defaultDuration: 0.25,
+    defaultDecay: 0.05,
+    defaultAttack: 0.05,
     context: context
 });
 

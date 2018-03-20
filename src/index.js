@@ -18,7 +18,7 @@ const TonePlayer = {
     },
     init: function(args) {
         this.options = Object.assign({}, this.defaultOptions, args || {});
-        this.defaultType =  this.options.defaultType
+        this.defaultType = this.options.defaultType
         this.defaultVolume = this.options.defaultVolume
         this.defaultDuration = this.options.defaultDuration
         this.defaultAttack = this.options.defaultAttack
@@ -33,17 +33,39 @@ const TonePlayer = {
 
         const gainNode = Context.createGain()
         gainNode.gain.setValueAtTime(0, Context.currentTime)
-        gainNode.gain.setValueAtTime(options.volume || this.options.defaultVolume, Context.currentTime + (options.delay || this.options.defaultDelay));
+
+        const startTime = Context.currentTime + (options.delay || this.options.defaultDelay)
+
+
+        const attack = options.attack || this.options.defaultAttack
+        const volume = options.volume || this.options.defaultVolume;
+
+        if (attack === 0) {
+            gainNode.gain.setValueAtTime(volume, startTime);
+        } else {
+            gainNode.gain.setValueAtTime(0, startTime);
+            gainNode.gain.linearRampToValueAtTime(volume, startTime + attack);
+        }
 
         gainNode.connect(Context.destination)
 
         const oscillator = Context.createOscillator();
         oscillator.type = options.type || this.options.defaultType;
-        oscillator.frequency.setValueAtTime(calculateFrequencyFromLetter(note), Context.currentTime + options.delay || this.options.defaultDelay);
+        oscillator.frequency.setValueAtTime(calculateFrequencyFromLetter(note), startTime);
         oscillator.connect(gainNode)
         oscillator.start();
 
-        oscillator.stop(Context.currentTime + ((options.duration || this.options.defaultDuration) + (options.delay || this.options.defaultDelay)))
+        const duration = options.duration || this.options.defaultDuration;
+        const endTime = startTime + duration;
+        const decay = options.decay || this.options.defaultDecay
+
+        if (decay === 0) {
+            oscillator.stop(endTime)
+        } else {
+            gainNode.gain.setValueAtTime(volume, endTime);
+            gainNode.gain.linearRampToValueAtTime(0, endTime + decay);
+            oscillator.stop(endTime + decay)
+        }
 
         oscillator.onended = () => {
             gainNode.disconnect(Context.destination)
