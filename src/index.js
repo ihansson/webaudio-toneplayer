@@ -8,6 +8,8 @@ const TonePlayer = {
         defaultVolume: 0.5,
         defaultDuration: 0.5,
         defaultDelay: 0,
+        defaultAttack: 0,
+        defaultDecay: 0,
     },
     create: function(args) {
         const player = Object.create(this);
@@ -16,19 +18,12 @@ const TonePlayer = {
     },
     init: function(args) {
         this.options = Object.assign({}, this.defaultOptions, args || {});
-        this.setDefaultType(this.options.defaultType)
-        this.setDefaultVolume(this.options.defaultVolume)
-        this.setDefaultDuration(this.options.defaultDuration)
+        this.defaultType =  this.options.defaultType
+        this.defaultVolume = this.options.defaultVolume
+        this.defaultDuration = this.options.defaultDuration
+        this.defaultAttack = this.options.defaultAttack
+        this.defaultDecay = this.options.defaultDecay
         this.Context = this.options.context || createTonePlayerContext()
-    },
-    setDefaultType: function(defaultType) {
-        this.defaultType = defaultType
-    },
-    setDefaultVolume: function(defaultVolume) {
-        this.defaultVolume = defaultVolume
-    },
-    setDefaultDuration: function(defaultDuration) {
-        this.defaultDuration = defaultDuration
     },
     playNote: function(note, options) {
 
